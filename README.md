@@ -59,7 +59,6 @@ Things you may want to cover:
 | prefecture_id      | integer    | null: false |
 | city               | string     | null: false |
 | address            | string     | null: false |
-| address_detail     | string     | null: false |
 | building_name      | string     |             |
 | tel                | string     | null: false |
 | purchase_record    | references | null: false, foreign_key: true  |
