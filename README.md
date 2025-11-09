@@ -28,8 +28,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :item
-- has_many :purchase_record
+- has_many :items
+- has_many :purchase_records
 
 
 ## Table: items
@@ -49,9 +49,9 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_one_attached :image
+- has_one :purchase_record
 
-
-## Table: purchases
+## Table: addresses
 
 | Column | Type      | Options                        |
 | ------ | ----------| ------------------------------ |
@@ -65,17 +65,18 @@ Things you may want to cover:
 | purchase_record    | integer    | null: false, foreign_key: true  |
 ### Association
 
-- has_one :purchase_record
+- belongs_to :purchase_record
 
 ## Table: purchase_records
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| purchase    | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
 | user        | references | null: false, foreign_key: true |
 
-- has_one :purchase
+- belongs_to :item
 - belongs_to :user
+
 * Database initialization
 
 * How to run the test suite
