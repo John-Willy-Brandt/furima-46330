@@ -34,17 +34,17 @@ Things you may want to cover:
 
 ## Table: items
 
-| Column               | Type       | Options     |
-| -------------------- | ---------- | ----------- |
-| item_name            | string     | null: false |
-| explanation          | text       | null: false |
-| category_id          | integer    | null: false |
-| status_id            | integer    | null: false |
-| delivery_cost_id     | integer    | null: false |
-| prefecture_id        | integer    | null: false |
-| delivery_duration_id | integer    | null: false |
-| price                | integer    | null: false |
-| user                 | integer    | null: false |
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| item_name            | string     | null: false                    |
+| explanation          | text       | null: false                    |
+| category_id          | integer    | null: false                    |
+| status_id            | integer    | null: false                    |
+| delivery_cost_id     | integer    | null: false                    |
+| prefecture_id        | integer    | null: false                    |
+| delivery_duration_id | integer    | null: false                    |
+| price                | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :user
@@ -62,7 +62,7 @@ Things you may want to cover:
 | address_detail     | string     | null: false |
 | building_name      | string     |             |
 | tel                | string     | null: false |
-| purchase_record    | integer    | null: false, foreign_key: true  |
+| purchase_record    | references | null: false, foreign_key: true  |
 ### Association
 
 - belongs_to :purchase_record
@@ -73,6 +73,7 @@ Things you may want to cover:
 | ----------- | ---------- | ------------------------------ |
 | item        | references | null: false, foreign_key: true |
 | user        | references | null: false, foreign_key: true |
+| address     | references | null: false, foreign_key: true |
 
 - belongs_to :item
 - belongs_to :user
