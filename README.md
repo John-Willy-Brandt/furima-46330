@@ -28,16 +28,12 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :items
-- has_many :purchases
-- has_many :purchase_records
-
+- has_many :item
 
 ## Table: items
 
 | Column               | Type       | Options     |
 | -------------------- | ---------- | ----------- |
-| users                | references | null: false, foreign_key: true |
 | item_name            | string     | null: false |
 | explanation          | text       | null: false |
 | category_id          | integer    | null: false |
@@ -46,41 +42,39 @@ Things you may want to cover:
 | prefecture_id        | integer    | null: false |
 | delivery_duration_id | integer    | null: false |
 | price                | integer    | null: false |
-
+| user                 | integer    | null: false |
 ### Association
 
 - belongs_to :user
-- has_one :purchases.item_id
+- has_one :purchase
 - has_one_attached :image
-- has_one :purchase_records_id
+- has_one :purchase_record
 
 ## Table: purchases
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| users             | references | null: false, foreign_key: true |
-| zipcode           | string     | null: false |
-| prefecture_id     | integer    | null: false |
-| city              | string     | null: false |
-| address           | string     | null: false |
-| address_detail    | string     | null: false |
-| building_name     | string     |             |
-| tel               | string     | null: false |
-
+| Column | Type      | Options                        |
+| ------ | ----------| ------------------------------ |
+| zipcode            | string     | null: false |
+| prefecture_id      | integer    | null: false |
+| city               | string     | null: false |
+| address            | string     | null: false |
+| address_detail     | string     | null: false |
+| building_name      | string     |             |
+| tel                | string     | null: false |
 ### Association
 
-- belongs_to :user
 - belongs_to :item
 
 ## Table: purchase_records
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| users  | references | null: false, foreign_key: true |
-| items  | references | null: false, foreign_key: true |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| purchase    | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
 
-- belongs_to :user
+
 - belongs_to :item
+- belongs_to :purchase
 
 
 * Database initialization
