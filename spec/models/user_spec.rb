@@ -6,6 +6,11 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+ 
+    it 'すべての値が正しく入力されていれば登録できる' do
+        expect(@user).to be_valid
+      end
+ 
     context '新規登録できない場合' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
