@@ -1,8 +1,7 @@
 class Item < ApplicationRecord
-
-belongs_to :user
-has_one_attached :image
-has_one :purchase_record
+  belongs_to :user
+  has_one_attached :image
+  has_one :purchase_record
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -11,7 +10,7 @@ has_one :purchase_record
   belongs_to :prefecture
   belongs_to :delivery_duration
 
-    with_options presence: true do
+  with_options presence: true do
     validates :image
     validates :item_name
     validates :explanation
