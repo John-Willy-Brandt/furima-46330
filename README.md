@@ -51,7 +51,7 @@ Things you may want to cover:
 - has_one_attached :image
 - has_one :purchase_record
 
-## Table: addresses
+## Table: orders
 
 | Column | Type      | Options                        |
 | ------ | ----------| ------------------------------ |
@@ -75,7 +75,7 @@ Things you may want to cover:
 
 - belongs_to :item
 - belongs_to :user
-- has_one :address
+- has_one :order
 
 * Database initialization
 
