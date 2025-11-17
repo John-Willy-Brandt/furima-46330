@@ -133,5 +133,12 @@ RSpec.describe Item, type: :model do
         %w[--- 1〜2日で発送 2〜3日で発送 4〜7日で発送]
       )
     end
+
+    it 'user が紐付いていないと保存できないこと' do
+    item.user = nil
+    item.valid?
+    expect(item.errors.full_messages).to include('User must exist')
+    end
+
   end
 end
