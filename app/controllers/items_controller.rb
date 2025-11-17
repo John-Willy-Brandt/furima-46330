@@ -3,8 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
-    #@items = []
-
+    # @items = []
   end
 
   def new
@@ -24,7 +23,6 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
-
 
   private
 
