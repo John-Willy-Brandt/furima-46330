@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
-    # @items = []
+
   end
 
   def new
@@ -15,13 +15,12 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: '商品を出品しました。'
     else
-      # バリデーション失敗時に new を描き直して、エラーメッセージを表示
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    @item = Item.find(params[:id])
+    # @item = Item.find(params[:id])
   end
 
   private

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
    get 'items/new', to: 'items#new'
 
-   resources :items, only: [:index, :new, :create, :show]
+   resources :items, only: [:index, :new, :create]
 
 end
