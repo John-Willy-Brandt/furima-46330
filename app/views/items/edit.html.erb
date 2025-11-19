@@ -20,7 +20,6 @@
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
-        <%# <%=  image_tag @item.image ,class:"item-box-img" %>
 
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       </div>
@@ -52,21 +51,16 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-category"}) %> %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, { class: "select-box", id: "item-category" }) %>
 
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-sales-status"}) %> %>
         <%= f.collection_select(:status_id, Status.all, :id, :name, {}, { class: "select-box", id: "item-sales-status" }) %>
-      </div>  <!-- /.form -->
-    </div>    <!-- /.items-detail -->
+      </div> 
+    </div>   
     <%# /商品の詳細 %>
-
-
-
 
     <%# 配送について %>
     <div class="items-detail">
@@ -79,19 +73,16 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-       <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
        <%= f.collection_select(:delivery_cost_id, DeliveryCost.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-prefecture"}) %> 
         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
         <%= f.collection_select(:delivery_duration_id, DeliveryDuration.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>  
       </div>
     </div>
@@ -111,7 +102,6 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%# <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
           <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>    
         </div>
         <div class="price-content">
@@ -152,7 +142,7 @@
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', "#", class:"back-btn" %>
+      <%= link_to 'もどる', items_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
