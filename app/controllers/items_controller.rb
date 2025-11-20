@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path   # トップ（index）に戻る
+      redirect_to root_path # トップ（index）に戻る
     else
       render :new, status: :unprocessable_entity
     end
@@ -46,12 +46,8 @@ class ItemsController < ApplicationController
     # move_to_index ですでに「current_user じゃなければ root にリダイレクト」しているので
     # ここではシンプルに destroy だけでもOK
     @item.destroy
-    redirect_to root_path, notice: "商品を削除しました。"
+    redirect_to root_path, notice: '商品を削除しました。'
   end
-
-
-
-  
 
   private
 
@@ -60,10 +56,8 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-     redirect_to root_path unless current_user == @item.user
+    redirect_to root_path unless current_user == @item.user
   end
-
-
 
   def item_params
     params.require(:item).permit(
