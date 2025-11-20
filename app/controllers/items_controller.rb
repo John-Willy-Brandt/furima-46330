@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update]
 
-  # 一覧表示
+  # 一覧表示,
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path   # トップ（index）に戻る
+      redirect_to root_path # トップ（index）に戻る
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,6 +42,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    # move_to_index ですでに「current_user じゃなければ root にリダイレクト」しているので
+    # ここではシンプルに destroy だけでもOK
+    @item.destroy
+    redirect_to root_path, notice: '商品を削除しました。'
+  end
+
   private
 
   def set_item
@@ -49,10 +56,8 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-     redirect_to root_path unless current_user == @item.user
+    redirect_to root_path unless current_user == @item.user
   end
-
-
 
   def item_params
     params.require(:item).permit(
