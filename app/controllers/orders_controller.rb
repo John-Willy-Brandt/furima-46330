@@ -4,19 +4,20 @@ class OrdersController < ApplicationController
   before_action :move_to_root
 
   def index
-    # 購入フォーム表示用
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @purchase_record_order = PurchaseRecordOrder.new
   end
 
   def create
-    # フォームから送られてきた値を詰める
     @purchase_record_order = PurchaseRecordOrder.new(order_params)
 
     if @purchase_record_order.valid?
-      # ★ 今は Payjp を使わないので決済処理はしない
+      pay_item
+
       @purchase_record_order.save  # purchase_records と orders を保存
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -50,11 +51,30 @@ class OrdersController < ApplicationController
     )
   end
 
+   def pay_item
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        amount: order_params[:price],
+        card: order_params[:token],  
+        currency: 'jpy'              
+      )
+   end
   private
 
-  def order_params
-    params.require(:order).permit(:price).merge(token: params[:token])
-  end
+def order_params
+  params.require(:purchase_record_order).permit(
+    :zipcode,
+    :prefecture_id,
+    :city,
+    :address,
+    :building_name,
+    :tel
+  ).merge(
+    user_id: current_user.id,
+    item_id: params[:item_id],
+    token: params[:token]
+  )
+end
 
 
 

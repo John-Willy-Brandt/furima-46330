@@ -1,5 +1,6 @@
 const pay = () => {
-  const payjp = Payjp('pk_test_***********************')// PAY.JPテスト公開鍵
+  const publicKey = gon.public_key
+  const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
@@ -10,6 +11,7 @@ const pay = () => {
   cvcElement.mount('#cvc-form');
 
   const form = document.getElementById('charge-form')
+
   form.addEventListener("submit", (e) => {
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
@@ -29,3 +31,4 @@ const pay = () => {
 };
 
 window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);
