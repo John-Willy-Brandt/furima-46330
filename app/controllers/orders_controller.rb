@@ -49,4 +49,13 @@ class OrdersController < ApplicationController
       # , token: params[:token]
     )
   end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:price).merge(token: params[:token])
+  end
+
+
+
 end
