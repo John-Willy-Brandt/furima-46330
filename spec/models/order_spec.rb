@@ -5,7 +5,7 @@ RSpec.describe Order, type: :model do
     @order = FactoryBot.build(:order)
   end
 
- context '購入できるとき' do
+  context '購入できるとき' do
     it '全項目が揃っていれば購入できる' do
       expect(@order).to be_valid
     end
@@ -90,4 +90,3 @@ RSpec.describe Order, type: :model do
     end
   end
 end
-

@@ -9,12 +9,12 @@ class PurchaseRecordOrder
   # 必須項目（presence: true）のグループ
   with_options presence: true do
     validates :zipcode, format: { with: /\A\d{3}-\d{4}\z/,
-                                      message: 'is invalid. Include hyphen(-)' }
+                                  message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :token
     validates :address
-        validates :tel, format: { with: /\A\d{10,11}\z/,
-                                       message: 'is invalid' }
+    validates :tel, format: { with: /\A\d{10,11}\z/,
+                              message: 'is invalid' }
     validates :user_id
     validates :item_id
     # PayJP を実装するときに token も必須にする
@@ -25,7 +25,7 @@ class PurchaseRecordOrder
   validates :prefecture_id,
             numericality: { other_than: 1, message: "can't be blank" }
 
-    validates :tel,
+  validates :tel,
             format: { with: /\A\d{10,11}\z/,
                       message: 'is invalid' }
 
