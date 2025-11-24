@@ -46,9 +46,9 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-      if current_user != @item.user || @item.purchase_record.present?
-          redirect_to root_path
-    end
+    return unless current_user != @item.user || @item.purchase_record.present?
+
+    redirect_to root_path
   end
 
   def item_params

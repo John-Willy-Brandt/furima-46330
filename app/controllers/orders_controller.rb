@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     if @purchase_record_order.valid?
       pay_item
 
-      @purchase_record_order.save 
+      @purchase_record_order.save
       redirect_to root_path
     else
       gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)
@@ -27,8 +27,6 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
-
-
 
   def pay_item
     Payjp.api_key = ENV.fetch('PAYJP_SECRET_KEY', nil)
