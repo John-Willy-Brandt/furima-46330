@@ -133,14 +133,12 @@
           <li class='list'>
              <%= link_to item_path(item) do %>
               <div class='item-img-content'>
-                <%# 商品に画像があればそれを表示、なければサンプル画像 %>
                 <% if item.image.attached? %>
                   <%= image_tag item.image, class: "item-img" %>
                 <% else %>
                   <%= image_tag "item-sample.png", class: "item-img" %>
                 <% end %>
 
-                <%# 商品が売れていればsold outを表示しましょう（purchase_record がある前提なら）%>
                 <% if item.purchase_record.present? %>
                 <div class='sold-out'>
                 <span>Sold Out!!</span>

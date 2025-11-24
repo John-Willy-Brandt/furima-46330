@@ -27,7 +27,6 @@ RSpec.describe PurchaseRecordOrder, type: :model do
     it 'zipcode が空だと購入できない' do
       @purchase_record_order.zipcode = ''
       @purchase_record_order.valid?
-      puts @purchase_record_order.errors.full_messages  # ← 追加！
       expect(@purchase_record_order.errors.full_messages).to include("Zipcode can't be blank")
     end
 
@@ -46,21 +45,18 @@ RSpec.describe PurchaseRecordOrder, type: :model do
     it 'city が空だと購入できない' do
       @purchase_record_order.city = ''
       @purchase_record_order.valid?
-      puts @purchase_record_order.errors.full_messages  # ← 追加！
       expect(@purchase_record_order.errors.full_messages).to include("City can't be blank")
     end
 
     it 'address が空だと購入できない' do
       @purchase_record_order.address = ''
       @purchase_record_order.valid?
-      puts @purchase_record_order.errors.full_messages  # ← 追加！
       expect(@purchase_record_order.errors.full_messages).to include("Address can't be blank")
     end
 
     it 'tel が空だと購入できない' do
       @purchase_record_order.tel = ''
       @purchase_record_order.valid?
-      puts @purchase_record_order.errors.full_messages  # ← 追加！
       expect(@purchase_record_order.errors.full_messages).to include("Tel can't be blank")
     end
 

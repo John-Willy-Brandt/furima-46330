@@ -17,8 +17,7 @@ class PurchaseRecordOrder
                               message: 'is invalid' }
     validates :user_id
     validates :item_id
-    # PayJP を実装するときに token も必須にする
-    # validates :token
+
   end
 
   # ActiveHash の「---」(id:1) を選ばせない
