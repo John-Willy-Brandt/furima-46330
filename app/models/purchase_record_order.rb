@@ -11,6 +11,7 @@ class PurchaseRecordOrder
     validates :zipcode, format: { with: /\A\d{3}-\d{4}\z/,
                                       message: 'is invalid. Include hyphen(-)' }
     validates :city
+    validates :token
     validates :address
         validates :tel, format: { with: /\A\d{10,11}\z/,
                                        message: 'is invalid' }
@@ -23,6 +24,10 @@ class PurchaseRecordOrder
   # ActiveHash の「---」(id:1) を選ばせない
   validates :prefecture_id,
             numericality: { other_than: 1, message: "can't be blank" }
+
+    validates :tel,
+            format: { with: /\A\d{10,11}\z/,
+                      message: 'is invalid' }
 
   # 保存処理（2つのテーブルにまたがる）
   def save
