@@ -6,16 +6,23 @@ class PurchaseRecordOrder
                 :token
 
   # バリデーション
+  # 必須項目（presence: true）のグループ
   with_options presence: true do
-    validates :user_id
-    validates :item_id
-    validates :zipcode
-    validates :prefecture_id
+    validates :zipcode, format: { with: /\A\d{3}-\d{4}\z/,
+                                      message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :address
-    validates :tel
-    validates :token
+        validates :tel, format: { with: /\A\d{10,11}\z/,
+                                       message: 'is invalid' }
+    validates :user_id
+    validates :item_id
+    # PayJP を実装するときに token も必須にする
+    # validates :token
   end
+
+  # ActiveHash の「---」(id:1) を選ばせない
+  validates :prefecture_id,
+            numericality: { other_than: 1, message: "can't be blank" }
 
   # 保存処理（2つのテーブルにまたがる）
   def save
