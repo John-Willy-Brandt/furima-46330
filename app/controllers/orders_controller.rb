@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     if @purchase_record_order.valid?
       pay_item
 
-      @purchase_record_order.save # purchase_records と orders を保存
+      @purchase_record_order.save 
       redirect_to root_path
     else
       gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)
@@ -24,23 +24,11 @@ class OrdersController < ApplicationController
 
   private
 
-  # 購入対象の商品を取得
   def set_item
     @item = Item.find(params[:item_id])
   end
 
-  # Strong Parameters
-  def order_params
-    params.require(:purchase_record_order).permit(
-      :zipcode, :prefecture_id, :city, :address,
-      :building_name, :tel
-    ).merge(
-      user_id: current_user.id,
-      item_id: @item.id
-      # Payjp 導入時に token を追加予定:
-      # , token: params[:token]
-    )
-  end
+
 
   def pay_item
     Payjp.api_key = ENV.fetch('PAYJP_SECRET_KEY', nil)
