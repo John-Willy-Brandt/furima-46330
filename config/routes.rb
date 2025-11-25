@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   get 'items/new', to: 'items#new'
 
   resources :items
+  resources :items do
+    # 購入機能（Orders）は items にネストする
+    resources :orders, only: [:index, :create]
+  end
 end
