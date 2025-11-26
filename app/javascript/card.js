@@ -19,8 +19,7 @@ const pay = () => {
 
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
-        // ★ 重要：送信しない → token が nil → Rails 側で token can't be blank を表示
-        form.submit(); // ← 送らないようにするのでは？ いいえ、送ってOK
+        form.submit(); 
         return;
       }
 

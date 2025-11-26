@@ -17,7 +17,6 @@ class PurchaseRecordOrder
                               message: 'is invalid' }
     validates :user_id
     validates :item_id
-
   end
 
   # ActiveHash の「---」(id:1) を選ばせない
