@@ -13,11 +13,6 @@ const pay = () => {
   const form = document.getElementById('charge-form')
 
   form.addEventListener("submit", (e) => {
-    payjp.createToken(numberElement).then(function (response) {
-     if (response.error) {
-       alert("カード情報が正しくありません。お手数ですが、もう一度ご入力ください。");
-       return;}      
-         else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
